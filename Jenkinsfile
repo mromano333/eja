@@ -1,9 +1,9 @@
 pipeline {
-  agent { jenkins-agent-admin-services }
+  agent { label 'jenkins-agent-admin-services' }
   
   stages {
       stage('install playwright test') {
-        agent docker {
+        agent { docker
           image 'mcr.microsoft.com/playwright:v1.35.0-jammy'
           reuseNode true
         }
@@ -23,7 +23,7 @@ pipeline {
           TEST_USERNAME = credentials('TEST_USERNAME')
           TEST_PASSWORD = credentials('TEST_PASSWORD')
         }
-        agent docker {
+        agent { docker
           image 'mcr.microsoft.com/playwright:v1.35.0-jammy'
           reuseNode true
         }
