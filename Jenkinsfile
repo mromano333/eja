@@ -8,14 +8,14 @@ pipeline {
   }
   
   stages {
-      // stage('install playwright test') {
+      stage('install playwright test') {
         steps {
           // sh '''
           sh 'npm install -D @playwright/test'
             //  npx playwright install --with-deps
           // '''
-      //   }
-      // }
+        }
+      }
 
       stage('e2e-tests') {
         environment {
@@ -40,6 +40,7 @@ pipeline {
     failure {
       catchError {
           // sh '...'
+      }
     }
   }
 }
