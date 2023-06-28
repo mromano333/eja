@@ -11,6 +11,9 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './e2e',
+  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
+  outputDir: 'test-results',
+  
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -30,6 +33,7 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
 
     // screenshot: 'only-on-failure',
+    screenshot: 'on',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -39,14 +43,21 @@ export default defineConfig({
   projects: [
     {
       name: 'Chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'], 
+        viewport: { width: 1280, height: 720 } 
+      },
     },
     {
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
     },
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+      // name: 'Google Chrome',
+      // use: {
+      //   ...devices['Desktop Chrome'],
+      //   channel: 'chrome',
+      //   viewport: { width: 1280, height: 720 } 
+      // },
     // },
   ],
 
