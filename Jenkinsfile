@@ -1,6 +1,5 @@
 pipeline {
   agent { jenkins-agent-admin-services }
-  }
   
   stages {
       stage('install playwright test') {
