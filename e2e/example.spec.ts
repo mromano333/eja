@@ -1,18 +1,21 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Visit Phoenix dev site and verify the title and login', async ({ page }) => {
+  await page.goto('https://thrive.thrivetrm.cloud/');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+  await expect(page).toHaveTitle(/NxGen Front-End/);
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  await expect(page).toHaveText(/Let's build relationships, not just pipelines./);
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  await page.locator('input[name="username"]').click();
+  await page.locator('input[name="username"]').fill('support@thrivetrm.com');
 
-  // Expects the URL to contain intro.
-  await expect(page).toHaveURL(/.*intro/);
+  await page.locator('input[name="password"]').click();
+  await page.locator('input[name="password"]').fill('password');
+
+  await page.locator('[placeholder="Password"]').press('Enter');
+
+  await page.locator('input[type="checkbox"]').check();
+
+  await page.locator('text=Continue with Username').click();
 });
