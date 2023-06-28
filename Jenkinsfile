@@ -3,15 +3,10 @@ pipeline {
   
   stages {
       stage('install playwright test') {
-        agent { docker
-          image 'mcr.microsoft.com/playwright:v1.35.0-jammy'
-          reuseNode true
-        }
         steps {
-          // sh '''
-          sh 'npm install -D @playwright/test'
-            //  npx playwright install --with-deps
-          // '''
+          sh """
+          npm install -D @playwright/test
+          """
         }
       }
 
@@ -23,13 +18,11 @@ pipeline {
           TEST_USERNAME = credentials('TEST_USERNAME')
           TEST_PASSWORD = credentials('TEST_PASSWORD')
         }
-        agent { docker
-          image 'mcr.microsoft.com/playwright:v1.35.0-jammy'
-          reuseNode true
-        }
         steps {
-          sh 'npm ci' //processes package.json and package-lock.json
-          sh 'npx playwright test'
+          sh """
+          npm ci
+          npx playwright test
+          """
         }
       }
   }
