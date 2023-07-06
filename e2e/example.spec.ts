@@ -16,5 +16,5 @@ test('Visit Phoenix dev site and verify the title, quote, and login', async ({ p
 
   await page.locator('input[type="checkbox"]').check();
 
-  await page.locator('text=Continue with Username').click();
+  await page.locator('text=Continue with Email').click();
 });
