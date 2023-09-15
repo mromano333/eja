@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('Visit Phoenix dev site and verify the title, quote, and login', async ({ page }) => {
   await page.goto('https://thrive.thrivetrm.cloud/');
 
-  await expect(page).toHaveTitle(/NxGen Front-End/);
+  await expect(page).toHaveTitle(/Thrive/);
 
   const quote = await page.getByText(/Let's build relationships, not just pipelines./);
   await expect(quote !== undefined ).toBeTruthy();
